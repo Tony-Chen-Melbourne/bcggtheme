@@ -10,3 +10,5 @@ Once devtools is installed, you can download and install the theme as follows:
 `devtools::install_github("Tony-Chen-Melbourne/bcggtheme")`
 
 The vignettes file explains how the package works.
+
+The package draws heavily on [grattantheme](https://github.com/grattan/grattantheme) created by Matt Cowgill, and maintained by Matt Cowgill and Will Mackey.
