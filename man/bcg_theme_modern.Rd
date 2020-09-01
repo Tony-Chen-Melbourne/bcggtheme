@@ -5,7 +5,7 @@
 \title{Create a ggplot2 theme in the style of modern, new school BCG charts}
 \usage{
 bcg_theme_modern(
-  base_size = 18,
+  base_size = 16,
   base_family = "sans",
   legend = "bottom",
   y_axis = FALSE

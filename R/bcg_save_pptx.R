@@ -1,4 +1,4 @@
-#' Output ggplot charts in the desired size
+#' Output ggplot charts to powerpoint files
 #' @name bcg_save_pptx
 #' @param filename Name for output file
 #' @param type Type of chart to output, either "halfslide" or "fullslide" or "all"

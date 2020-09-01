@@ -7,7 +7,7 @@
 #' @import ggplot2
 #' @export
 
-bcg_theme_classic <- function(base_size = 18,
+bcg_theme_classic <- function(base_size = 16,
                                base_family = "sans",
                                legend = "bottom") {
 

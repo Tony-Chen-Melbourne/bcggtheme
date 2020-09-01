@@ -2,7 +2,7 @@
 % Please edit documentation in R/bcg_save.R
 \name{bcg_save}
 \alias{bcg_save}
-\title{Output ggplot charts in the desired size}
+\title{Output ggplot charts to pdf or png files}
 \usage{
 bcg_save(..., filename, type)
 }
@@ -12,5 +12,5 @@ bcg_save(..., filename, type)
 \item{type}{Type of chart to output, either "halfslide" or "fullslide" or "all"}
 }
 \description{
-Output ggplot charts in the desired size
+Output ggplot charts to pdf or png files
 }

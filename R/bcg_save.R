@@ -1,4 +1,4 @@
-#' Output ggplot charts in the desired size
+#' Output ggplot charts to pdf or png files
 #' @name bcg_save
 #' @param filename Name for output file
 #' @param type Type of chart to output, either "halfslide" or "fullslide" or "all"

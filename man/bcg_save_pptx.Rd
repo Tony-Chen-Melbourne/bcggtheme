@@ -2,7 +2,7 @@
 % Please edit documentation in R/bcg_save_pptx.R
 \name{bcg_save_pptx}
 \alias{bcg_save_pptx}
-\title{Output ggplot charts in the desired size}
+\title{Output ggplot charts to powerpoint files}
 \usage{
 bcg_save_pptx(..., filename, type)
 }
@@ -12,5 +12,5 @@ bcg_save_pptx(..., filename, type)
 \item{type}{Type of chart to output, either "halfslide" or "fullslide" or "all"}
 }
 \description{
-Output ggplot charts in the desired size
+Output ggplot charts to powerpoint files
 }

@@ -4,7 +4,7 @@
 \alias{bcg_theme_classic}
 \title{Create a ggplot2 theme in the style of classic, old-school BCG charts}
 \usage{
-bcg_theme_classic(base_size = 18, base_family = "sans", legend = "bottom")
+bcg_theme_classic(base_size = 16, base_family = "sans", legend = "bottom")
 }
 \arguments{
 \item{base_size}{Size for text elements. Defaults to 18}
