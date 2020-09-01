@@ -20,3 +20,9 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+Imports: 
+    magrittr,
+    ggplot2,
+    stringr,
+    officer,
+    rvg
