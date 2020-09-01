@@ -1,7 +1,8 @@
 ---
 title: "Using bcggtheme"
 author: "Tony Chen"
-output: rmarkdown::html_vignette
+output: 
+  pdf_document:
 vignette: >
   %\VignetteIndexEntry{Using bcggtheme}
   %\VignetteEngine{knitr::rmarkdown}
