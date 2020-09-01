@@ -8,3 +8,5 @@ The package needs to be downloaded and installed from Github. The easiest way to
 Once devtools is installed, you can download and install the theme as follows:
 
 `devtools::install_github("Tony-Chen-Melbourne/bcggtheme")`
+
+The vignettes file explains how the package works.
