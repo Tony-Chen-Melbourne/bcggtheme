@@ -25,7 +25,8 @@ ggplot2::theme_classic() +
           axis.ticks = element_blank(),
           plot.title = element_text(size=(base_size+2)),
           plot.subtitle = element_text(size=base_size),
-          plot.caption = element_text(hjust = 0)
+          plot.caption = element_text(hjust = 0,
+                                      size = (base_size-6))
     ) +
     theme(legend.position = "bottom",
           legend.title = element_blank(),
@@ -57,6 +58,9 @@ else if (y_axis == TRUE) {
 }
 
 else {"y_axis only takes the values TRUE and FALSE"}
+
+# Calling an internal function to update the geoms
+update_bcg_geoms()
 
 return(ret)
 

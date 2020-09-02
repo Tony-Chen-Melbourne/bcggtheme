@@ -22,12 +22,16 @@ bcg_theme_classic <- function(base_size = 16,
           axis.ticks.length=unit(.2, "cm"),
           plot.title = element_text(size=(base_size + 2)),
           plot.subtitle = element_text(size=base_size),
-          plot.caption = element_text(hjust = 0)
+          plot.caption = element_text(hjust = 0,
+                                      size = base_size - 6)
     ) +
     theme(legend.position = legend,
           legend.title = element_blank(),
           legend.text = element_text(size = base_size - 4)) +
     theme(strip.background = element_blank())
+
+# Calling an internal function to update the geoms
+update_bcg_geoms()
 
 return(ret)
 

@@ -150,5 +150,27 @@ The package is loaded with 6 standard colours. Both `bcg_colour_manual` and `bcg
 knitr::include_graphics("palette.png")
 ```
 
+### Outputting charts from R
+
+There are two functions to output charts: `bcg_save` and `bcg_save_pptx`. They automatically save the last object created through ggplot. Both output charts in either a half-slide (designed to fit two charts onto one powerpoint slide) or full-slide (designed to fill up a whole powerpoint slide). 
+
+The following code would create a folder called `test` within the working directory, with two png charts contained within
+
+```{r eval = FALSE}
+bcg_save(filename = "test.png", type = "halfslide") # Creates just a half slide
+bcg_save(filename = "test.png", type = "fullslide") # Creates just a full slide
+bcg_save(filename = "test.png", type = "all") # Creates both 
+```
+
+The following code would create a folder called `test` within the working directory, with two pptx charts contained within. The powerpoint slides contain editable graphics, which can be easily copied across to your desired presentation.
+
+```{r eval = FALSE}
+bcg_save_pptx(filename = "test.pptx", type = "halfslide") # Creates just a half slide
+bcg_save_pptx(filename = "test.pptx", type = "fullslide") # Creates just a full slide
+bcg_save_pptx(filename = "test.pptx", type = "all") # Creates both 
+```
+
+
+
 
 

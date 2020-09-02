@@ -11,6 +11,14 @@ bcg_save_pptx <- function(...,
                      filename,
                      type) {
 
+  # Last plot
+  plot <- ggplot2::last_plot()
+
+  # Getting the text labels
+  title <- plot$labels$title
+  subtitle <- plot$labels$subtitle
+  caption <- plot$labels$caption
+
   # Creating the right names for outputting first
   dir <- tools::file_path_sans_ext(filename)
   filetype <- tools::file_ext(filename)
@@ -19,8 +27,6 @@ bcg_save_pptx <- function(...,
   half_slide_name <- stringr::str_c(dir,"/", base_name, "_halfslide.", filetype)
   full_slide_name <- stringr::str_c(dir,"/", base_name, "_fullslide.", filetype)
 
-  # Last plot
-  plot <- ggplot2::last_plot()
 
   # Creating the file directory if it doesn't already exist
   if(!dir.exists(dir)) {
@@ -32,9 +38,14 @@ bcg_save_pptx <- function(...,
   # Setting up halfslide, fullslide, and all versions
   ret <- if(type == "halfslide") {
 
+    plot_half <- plot + labs(title = title %>% stringr::str_wrap(width = 35),
+                             subtitle = subtitle %>% stringr::str_wrap(width = 35),
+                             caption = caption %>% stringr::str_wrap(width = 55)
+    )
+
     officer::read_pptx() %>%
       officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
-      officer::ph_with(rvg::dml(ggobj = plot),
+      officer::ph_with(rvg::dml(ggobj = plot_half),
                        location = ph_location(width = 12/2.54, height = 14/2.54, type = "body")) %>%
       print(target = half_slide_name)
 
@@ -43,9 +54,14 @@ bcg_save_pptx <- function(...,
 
   else if (type == "fullslide") {
 
+    plot_full <- plot + labs(title = title %>% stringr::str_wrap(width = 90),
+                             subtitle = subtitle %>% stringr::str_wrap(width = 90),
+                             caption = caption %>% stringr::str_wrap(width = 150)
+    )
+
     officer::read_pptx() %>%
       officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
-      officer::ph_with(rvg::dml(ggobj = plot),
+      officer::ph_with(rvg::dml(ggobj = plot_full),
                        location = ph_location(width = 28/2.54, height = 14/2.54, type = "body")) %>%
       print(target = full_slide_name)
 
@@ -53,16 +69,26 @@ bcg_save_pptx <- function(...,
 
   else if (type == "all") {
 
+    plot_half <- plot + labs(title = title %>% stringr::str_wrap(width = 35),
+                             subtitle = subtitle %>% stringr::str_wrap(width = 35),
+                             caption = caption %>% stringr::str_wrap(width = 55)
+    )
+
+    plot_full <- plot + labs(title = title %>% stringr::str_wrap(width = 90),
+                             subtitle = subtitle %>% stringr::str_wrap(width = 90),
+                             caption = caption %>% stringr::str_wrap(width = 150)
+    )
+
     officer::read_pptx() %>%
       officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
-      officer::ph_with(rvg::dml(ggobj = plot),
+      officer::ph_with(rvg::dml(ggobj = plot_half),
                        location = ph_location(width = 12/2.54, height = 14/2.54, type = "body")) %>%
       print(target = half_slide_name)
 
 
     officer::read_pptx() %>%
       officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
-      officer::ph_with(rvg::dml(ggobj = plot),
+      officer::ph_with(rvg::dml(ggobj = plot_full),
                        location = ph_location(width = 28/2.54, height = 14/2.54, type = "body")) %>%
       print(target = full_slide_name)
 
