@@ -36,31 +36,38 @@ bcg_save <- function(...,
 
   }
 
-# Creating a version without title, subtitle, and caption, which is output regardless of type choice
+# Creating different versions of the chart
+  # Without labels
   plot_sans_title <- plot + labs(title = NULL,
                                       subtitle = NULL,
                                       caption = NULL
   )
 
+  # Half slide
+  plot_half <- plot + labs(title = title %>% stringr::str_wrap(width = 35),
+                           subtitle = subtitle %>% stringr::str_wrap(width = 35),
+                           caption = caption %>% stringr::str_wrap(width = 55)
+  )
+
+  # Full slide
+  plot_full <- plot + labs(title = title %>% stringr::str_wrap(width = 90),
+                           subtitle = subtitle %>% stringr::str_wrap(width = 90),
+                           caption = caption %>% stringr::str_wrap(width = 150)
+  )
 
   # Setting up halfslide, fullslide, and all versions
   ret <- if(type == "halfslide") {
 
-    plot_half <- plot + labs(title = title %>% stringr::str_wrap(width = 35),
-                             subtitle = subtitle %>% stringr::str_wrap(width = 35),
-                             caption = caption %>% stringr::str_wrap(width = 55)
-                             )
-
     ggplot2::ggsave(...,
-                    file=half_slide_name,
-                    plot = plot_half,
+                    file=half_slide_name_sans_title,
+                    plot = plot_sans_title,
                     width=12, height=14,
                     units = "cm",
                     dpi = 400)
 
     ggplot2::ggsave(...,
-                    file=half_slide_name_sans_title,
-                    plot = plot_sans_title,
+                    file=half_slide_name,
+                    plot = plot_half,
                     width=12, height=14,
                     units = "cm",
                     dpi = 400)
@@ -69,22 +76,16 @@ bcg_save <- function(...,
 
   else if (type == "fullslide") {
 
-    plot_full <- plot + labs(title = title %>% stringr::str_wrap(width = 90),
-                             subtitle = subtitle %>% stringr::str_wrap(width = 90),
-                             caption = caption %>% stringr::str_wrap(width = 150)
-    )
-
-
-    ggplot2::ggsave(...,
-                    file=full_slide_name,
-                    plot = plot_full,
+  ggplot2::ggsave(...,
+                    file=full_slide_name_sans_title,
+                    plot = plot_sans_title,
                     width=28, height=14,
                     units = "cm",
                     dpi = 400)
 
-    ggplot2::ggsave(...,
-                    file=full_slide_name_sans_title,
-                    plot = plot_sans_title,
+  ggplot2::ggsave(...,
+                    file=full_slide_name,
+                    plot = plot_full,
                     width=28, height=14,
                     units = "cm",
                     dpi = 400)
@@ -93,24 +94,8 @@ bcg_save <- function(...,
 
   else if (type == "all") {
 
-    plot_half <- plot + labs(title = title %>% stringr::str_wrap(width = 35),
-                             subtitle = subtitle %>% stringr::str_wrap(width = 35),
-                             caption = caption %>% stringr::str_wrap(width = 55)
-    )
-
-    plot_full <- plot + labs(title = title %>% stringr::str_wrap(width = 90),
-                             subtitle = subtitle %>% stringr::str_wrap(width = 90),
-                             caption = caption %>% stringr::str_wrap(width = 150)
-    )
 
 # Half slides
-    ggplot2::ggsave(...,
-                    file=half_slide_name,
-                    plot = plot_half,
-                    width=12, height=14,
-                    units = "cm",
-                    dpi = 400)
-
     ggplot2::ggsave(...,
                     file=half_slide_name_sans_title,
                     plot = plot_sans_title,
@@ -118,14 +103,14 @@ bcg_save <- function(...,
                     units = "cm",
                     dpi = 400)
 
-# Full slides
     ggplot2::ggsave(...,
-                    file=full_slide_name,
-                    plot = plot_full,
-                    width=28, height=14,
+                    file=half_slide_name,
+                    plot = plot_half,
+                    width=12, height=14,
                     units = "cm",
                     dpi = 400)
 
+# Full slides
     ggplot2::ggsave(...,
                     file=full_slide_name_sans_title,
                     plot = plot_sans_title,
@@ -133,7 +118,12 @@ bcg_save <- function(...,
                     units = "cm",
                     dpi = 400)
 
-
+    ggplot2::ggsave(...,
+                    file=full_slide_name,
+                    plot = plot_full,
+                    width=28, height=14,
+                    units = "cm",
+                    dpi = 400)
 
   }
 

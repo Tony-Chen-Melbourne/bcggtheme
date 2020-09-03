@@ -39,6 +39,12 @@ bcg_save_pptx <- function(...,
 
   # Creating different versions for outputting
 
+  #No title
+  plot_sans_title <- base_plot + labs(title = NULL,
+                                      subtitle = NULL,
+                                      caption = NULL
+  )
+
   # Half size
   plot_half <- base_plot + ggplot2::labs(title = title %>% stringr::str_wrap(width = 35),
                                     subtitle = subtitle %>% stringr::str_wrap(width = 35),
@@ -49,12 +55,6 @@ bcg_save_pptx <- function(...,
   plot_full <- base_plot + labs(title = title %>% stringr::str_wrap(width = 90),
                            subtitle = subtitle %>% stringr::str_wrap(width = 90),
                            caption = caption %>% stringr::str_wrap(width = 150)
-  )
-
-   #No title
-  plot_sans_title <- base_plot + labs(title = NULL,
-                                 subtitle = NULL,
-                                 caption = NULL
   )
 
   # Getting the ppt base, and calling the information for officer
@@ -69,16 +69,16 @@ bcg_save_pptx <- function(...,
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
       officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
-      officer::ph_with(rvg::dml(ggobj = plot_half),
+      officer::ph_with(rvg::dml(ggobj = plot_sans_title),
                        location = officer::ph_location(width = 12/2.54, height = 14/2.54, type = "body")) %>%
-      print(target = half_slide_name)
+      print(target = half_slide_name_sans_title)
 
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
       officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
-      officer::ph_with(rvg::dml(ggobj = plot_sans_title),
+      officer::ph_with(rvg::dml(ggobj = plot_half),
                        location = officer::ph_location(width = 12/2.54, height = 14/2.54, type = "body")) %>%
-      print(target = half_slide_name_sans_title)
+      print(target = half_slide_name)
 
   }
 
@@ -87,17 +87,16 @@ bcg_save_pptx <- function(...,
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
       officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
-      officer::ph_with(rvg::dml(ggobj = plot_full),
+      officer::ph_with(rvg::dml(ggobj = plot_sans_title),
                        location = officer::ph_location(width = 28/2.54, height = 14/2.54, type = "body")) %>%
-      print(target = full_slide_name)
-
+      print(target = full_slide_name_sans_title)
 
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
       officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
-      officer::ph_with(rvg::dml(ggobj = plot_sans_title),
+      officer::ph_with(rvg::dml(ggobj = plot_full),
                        location = officer::ph_location(width = 28/2.54, height = 14/2.54, type = "body")) %>%
-      print(target = full_slide_name_sans_title)
+      print(target = full_slide_name)
 
   }
 
@@ -107,31 +106,31 @@ bcg_save_pptx <- function(...,
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
       officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
-      officer::ph_with(rvg::dml(ggobj = plot_half),
-                       location = officer::ph_location(width = 12/2.54, height = 14/2.54, type = "body")) %>%
-      print(target = half_slide_name)
-
-    officer::read_pptx(ppt_base) %>%
-      officer::remove_slide() %>%
-      officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
       officer::ph_with(rvg::dml(ggobj = plot_sans_title),
                        location = officer::ph_location(width = 12/2.54, height = 14/2.54, type = "body")) %>%
       print(target = half_slide_name_sans_title)
 
-    # Both full slide versions
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
       officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
-      officer::ph_with(rvg::dml(ggobj = plot_full),
-                       location = officer::ph_location(width = 28/2.54, height = 14/2.54, type = "body")) %>%
-      print(target = full_slide_name)
+      officer::ph_with(rvg::dml(ggobj = plot_half),
+                       location = officer::ph_location(width = 12/2.54, height = 14/2.54, type = "body")) %>%
+      print(target = half_slide_name)
 
+    # Both full slide versions
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
       officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
       officer::ph_with(rvg::dml(ggobj = plot_sans_title),
                        location = officer::ph_location(width = 28/2.54, height = 14/2.54, type = "body")) %>%
       print(target = full_slide_name_sans_title)
+
+    officer::read_pptx(ppt_base) %>%
+      officer::remove_slide() %>%
+      officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
+      officer::ph_with(rvg::dml(ggobj = plot_full),
+                       location = officer::ph_location(width = 28/2.54, height = 14/2.54, type = "body")) %>%
+      print(target = full_slide_name)
 
 
   }

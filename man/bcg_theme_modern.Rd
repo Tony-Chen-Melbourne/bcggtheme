@@ -8,7 +8,8 @@ bcg_theme_modern(
   base_size = 16,
   base_family = "sans",
   legend = "bottom",
-  y_axis = FALSE
+  y_axis = FALSE,
+  flipped = FALSE
 )
 }
 \arguments{
@@ -20,6 +21,8 @@ indistinguishable from Arial.}
 \item{legend}{"bottom" by default.}
 
 \item{y_axis}{FALSE by default. Set TRUE to add a y axis}
+
+\item{flipped}{FALSE by default.}
 }
 \description{
 Create a ggplot2 theme in the style of modern, new school BCG charts
