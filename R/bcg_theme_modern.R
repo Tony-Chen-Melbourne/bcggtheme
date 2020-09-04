@@ -7,18 +7,20 @@
 #' @param y_axis FALSE by default. Set TRUE to add a y axis
 #' @param flipped FALSE by default.
 #' @import ggplot2
+#' @import extrafont
 #' @export
 
 bcg_theme_modern <- function(base_size = 16,
-                               base_family = "sans",
                                legend = "bottom",
                                y_axis = FALSE,
                                flipped = FALSE) {
 
-ret <- if(y_axis == FALSE) {
+  extrafont::loadfonts(device = "win", quiet = TRUE)
+
+  ret <- if(y_axis == FALSE) {
 
 ggplot2::theme_classic() +
-    theme(text = element_text(family= base_family,
+    theme(text = element_text(family="Trebuchet MS",
                               size = base_size),
           axis.text.x = element_text(colour = "black", size = base_size),
           axis.line = element_line(color = bcggtheme::bcg_grey),
@@ -41,7 +43,7 @@ ggplot2::theme_classic() +
 else if (y_axis == TRUE) {
 
   ggplot2::theme_classic() +
-    theme(text = element_text(family= base_family,
+    theme(text = element_text(family= "Trebuchet MS",
                               size = base_size),
           axis.text.x = element_text(colour = "black", size = base_size),
           axis.line = element_line(color = bcggtheme::bcg_grey),

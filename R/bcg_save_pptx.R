@@ -68,16 +68,16 @@ bcg_save_pptx <- function(...,
 
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
-      officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
+      officer::add_slide(layout = "half slide", master = "Office Theme") %>%
       officer::ph_with(rvg::dml(ggobj = plot_sans_title),
-                       location = officer::ph_location(width = 12/2.54, height = 14/2.54, type = "body")) %>%
+                       location = ph_location_label(ph_label = "Content Placeholder 2")) %>%
       print(target = half_slide_name_sans_title)
 
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
-      officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
+      officer::add_slide(layout = "half slide", master = "Office Theme") %>%
       officer::ph_with(rvg::dml(ggobj = plot_half),
-                       location = officer::ph_location(width = 12/2.54, height = 14/2.54, type = "body")) %>%
+                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
       print(target = half_slide_name)
 
   }
@@ -86,16 +86,16 @@ bcg_save_pptx <- function(...,
 
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
-      officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
+      officer::add_slide(layout = "full slide", master = "Office Theme") %>%
       officer::ph_with(rvg::dml(ggobj = plot_sans_title),
-                       location = officer::ph_location(width = 28/2.54, height = 14/2.54, type = "body")) %>%
+                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
       print(target = full_slide_name_sans_title)
 
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
-      officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
+      officer::add_slide(layout = "full slide", master = "Office Theme") %>%
       officer::ph_with(rvg::dml(ggobj = plot_full),
-                       location = officer::ph_location(width = 28/2.54, height = 14/2.54, type = "body")) %>%
+                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
       print(target = full_slide_name)
 
   }
@@ -105,31 +105,31 @@ bcg_save_pptx <- function(...,
     # Both half slide versions
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
-      officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
+      officer::add_slide(layout = "half slide", master = "Office Theme") %>%
       officer::ph_with(rvg::dml(ggobj = plot_sans_title),
-                       location = officer::ph_location(width = 12/2.54, height = 14/2.54, type = "body")) %>%
+                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
       print(target = half_slide_name_sans_title)
 
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
-      officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
+      officer::add_slide(layout = "half slide", master = "Office Theme") %>%
       officer::ph_with(rvg::dml(ggobj = plot_half),
-                       location = officer::ph_location(width = 12/2.54, height = 14/2.54, type = "body")) %>%
+                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
       print(target = half_slide_name)
 
     # Both full slide versions
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
-      officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
+      officer::add_slide(layout = "full slide", master = "Office Theme") %>%
       officer::ph_with(rvg::dml(ggobj = plot_sans_title),
-                       location = officer::ph_location(width = 28/2.54, height = 14/2.54, type = "body")) %>%
+                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
       print(target = full_slide_name_sans_title)
 
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
-      officer::add_slide(layout = "Title and Content", master = "Office Theme") %>%
+      officer::add_slide(layout = "full slide", master = "Office Theme") %>%
       officer::ph_with(rvg::dml(ggobj = plot_full),
-                       location = officer::ph_location(width = 28/2.54, height = 14/2.54, type = "body")) %>%
+                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
       print(target = full_slide_name)
 
 

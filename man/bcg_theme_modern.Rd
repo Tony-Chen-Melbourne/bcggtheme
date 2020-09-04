@@ -6,7 +6,6 @@
 \usage{
 bcg_theme_modern(
   base_size = 16,
-  base_family = "sans",
   legend = "bottom",
   y_axis = FALSE,
   flipped = FALSE
@@ -15,14 +14,14 @@ bcg_theme_modern(
 \arguments{
 \item{base_size}{Size for text elements. Defaults to 18}
 
-\item{base_family}{Font family for text elements. Defaults to "sans",
-indistinguishable from Arial.}
-
 \item{legend}{"bottom" by default.}
 
 \item{y_axis}{FALSE by default. Set TRUE to add a y axis}
 
 \item{flipped}{FALSE by default.}
+
+\item{base_family}{Font family for text elements. Defaults to "sans",
+indistinguishable from Arial.}
 }
 \description{
 Create a ggplot2 theme in the style of modern, new school BCG charts

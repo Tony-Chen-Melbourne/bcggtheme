@@ -127,20 +127,48 @@ plot +
   bcg_theme_modern() +
   bcg_scale_y_continuous(limits = c(0,200000)) +
   bcg_fill_manual() +
-  bcg_geom_label(aes(label = scales::comma(citations)), nudge_y = 10000)
+  bcg_geom_label(aes(label = scales::comma(citations)), nudge_y = 20000)
 
 ```
 
-With the modern version we can add the y axis line back in, using `bcg_theme_modern(y_axis = TRUE)`. However, this doesn't come with the values.
+With the modern version we can add the y axis line back in, using `bcg_theme_modern(y_axis = TRUE)`.
 
 ```{r}
 plot +
   bcg_theme_modern(y_axis = TRUE) +
   bcg_scale_y_continuous(limits = c(0,200000)) +
   bcg_fill_manual() +
-  bcg_geom_label(aes(label = scales::comma(citations)), nudge_y = 10000)
+  bcg_geom_label(aes(label = scales::comma(citations)), nudge_y = 20000)
 
 ```
+
+
+### Flipped charts
+
+`bcggtheme` has the function to remove the x, so that charts make sense when used in conjunction with `coord_flip()`.
+
+```{r}
+plot +
+  bcg_theme_modern(y_axis = TRUE) +
+  bcg_scale_y_continuous(limits = c(0,200000)) +
+  bcg_fill_manual() +
+  bcg_geom_label(aes(label = scales::comma(citations)), nudge_y = 20000) +
+  coord_flip()
+
+```
+
+Then setting  `bcg_theme_modern(flipped = TRUE)`
+
+```{r}
+plot +
+  bcg_theme_modern(y_axis = TRUE, flipped = TRUE) +
+  bcg_scale_y_continuous(limits = c(0,200000)) +
+  bcg_fill_manual() +
+  bcg_geom_label(aes(label = scales::comma(citations)), nudge_y = 20000) +
+  coord_flip()
+
+```
+Note that the same functionality applies to `bcg_theme_classic()`.
 
 ### Colours
 

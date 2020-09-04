@@ -4,18 +4,10 @@
 \alias{bcg_theme_classic}
 \title{Create a ggplot2 theme in the style of classic, old-school BCG charts}
 \usage{
-bcg_theme_classic(
-  base_size = 16,
-  base_family = "sans",
-  legend = "bottom",
-  flipped = FALSE
-)
+bcg_theme_classic(base_size = 16, legend = "bottom", flipped = FALSE)
 }
 \arguments{
-\item{base_size}{Size for text elements. Defaults to 18}
-
-\item{base_family}{Font family for text elements. Defaults to "sans",
-indistinguishable from Arial.}
+\item{base_size}{Size for text elements. Defaults to 16}
 
 \item{legend}{"bottom" by default.}
 

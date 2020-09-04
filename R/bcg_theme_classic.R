@@ -1,21 +1,20 @@
 #' Create a ggplot2 theme in the style of classic, old-school BCG charts
 #' @name bcg_theme_classic
-#' @param base_size Size for text elements. Defaults to 18
-#' @param base_family Font family for text elements. Defaults to "sans",
-#'   indistinguishable from Arial.
+#' @param base_size Size for text elements. Defaults to 16
 #' @param legend "bottom" by default.
 #' @param flipped "FALSE" by default
 #' @import ggplot2
+#' @import extrafont
 #' @export
 
 bcg_theme_classic <- function(base_size = 16,
-                               base_family = "sans",
                                legend = "bottom",
                                flipped = FALSE) {
 
+  extrafont::loadfonts(device = "win", quiet = TRUE)
 
   ret <- ggplot2::theme_classic() +
-    ggplot2::theme(text = element_text(family= base_family,
+    ggplot2::theme(text = element_text(family="Trebuchet MS",
                               size = base_size),
           axis.text.x = element_text(colour = "black", size = base_size),
           axis.text.y = element_text(colour = "black", size = base_size),

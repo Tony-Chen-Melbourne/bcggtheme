@@ -63,14 +63,16 @@ bcg_save <- function(...,
                     plot = plot_sans_title,
                     width=12, height=14,
                     units = "cm",
-                    dpi = 400)
+                    dpi = 400,
+                    type = "cairo")
 
     ggplot2::ggsave(...,
                     file=half_slide_name,
                     plot = plot_half,
                     width=12, height=14,
                     units = "cm",
-                    dpi = 400)
+                    dpi = 400,
+                    type = "cairo")
 
   }
 
@@ -81,14 +83,16 @@ bcg_save <- function(...,
                     plot = plot_sans_title,
                     width=28, height=14,
                     units = "cm",
-                    dpi = 400)
+                    dpi = 400,
+                  type = "cairo")
 
   ggplot2::ggsave(...,
                     file=full_slide_name,
                     plot = plot_full,
                     width=28, height=14,
                     units = "cm",
-                    dpi = 400)
+                    dpi = 400,
+                  type = "cairo")
 
   }
 
@@ -101,14 +105,16 @@ bcg_save <- function(...,
                     plot = plot_sans_title,
                     width=12, height=14,
                     units = "cm",
-                    dpi = 400)
+                    dpi = 400,
+                    type = "cairo")
 
     ggplot2::ggsave(...,
                     file=half_slide_name,
                     plot = plot_half,
                     width=12, height=14,
                     units = "cm",
-                    dpi = 400)
+                    dpi = 400,
+                    type = "cairo")
 
 # Full slides
     ggplot2::ggsave(...,
@@ -116,14 +122,16 @@ bcg_save <- function(...,
                     plot = plot_sans_title,
                     width=28, height=14,
                     units = "cm",
-                    dpi = 400)
+                    dpi = 400,
+                    type = "cairo")
 
     ggplot2::ggsave(...,
                     file=full_slide_name,
                     plot = plot_full,
                     width=28, height=14,
                     units = "cm",
-                    dpi = 400)
+                    dpi = 400,
+                    type = "cairo")
 
   }
 
