@@ -9,6 +9,16 @@ Once devtools is installed, you can download and install the theme as follows:
 
 `devtools::install_github("Tony-Chen-Melbourne/bcggtheme")`
 
+One final step before use is to load Windows system fonts into R, in order to access the standard MS Trebuchet font. First install the `extrafonts` library package:
+
+`install.packages("extrafont")`
+
+The run the code:
+
+`extrafont::font_import()`
+
+This will take a few minutes to do its thing, after which you're good to go.
+
 The vignettes file explains how the package works.
 
 The package draws heavily on [grattantheme](https://github.com/grattan/grattantheme) created by Matt Cowgill, and maintained by Matt Cowgill and Will Mackey.
