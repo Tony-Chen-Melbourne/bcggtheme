@@ -2,7 +2,7 @@
 title: "Using bcggtheme"
 author: "Tony Chen"
 output: 
-  pdf_document:
+  html_document:
 vignette: >
   %\VignetteIndexEntry{Using bcggtheme}
   %\VignetteEngine{knitr::rmarkdown}
@@ -181,6 +181,8 @@ knitr::include_graphics("palette.png")
 ### Outputting charts from R
 
 There are two functions to output charts: `bcg_save` and `bcg_save_pptx`. They automatically save the last object created through ggplot. Both output charts in either a half-slide (designed to fit two charts onto one powerpoint slide) or full-slide (designed to fill up a whole powerpoint slide). 
+
+`bcg_save` works best with `.png` files, currently it is unable to output `.pdf` files.
 
 The following code would create a folder called `test` within the working directory, with two png charts contained within
 

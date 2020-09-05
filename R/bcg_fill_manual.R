@@ -1,20 +1,32 @@
-#' Easily fill your ggplot data using the BCG palette, up to 6 colour
+#' Easily fill your ggplot data using the BCG palette
 #' @name bcg_fill_manual
+#' @param pal Choose the colour palette, either "base" or "traffic". Defaults to "base".
+#' @param reverse Flip the order of colours in the palette. TRUE or FALSE. Defaults to FALSE.
 #' @import ggplot2
 #' @export
 
-bcg_fill_manual <- function(...) {
+bcg_fill_manual <- function(...,
+                            pal = "base",
+                            reverse = FALSE) {
 
+  palette <- bcggtheme::bcg_palette(pal = pal)
+
+  if(reverse == TRUE) {
+    palette <- palette %>% rev()
+
+  }
+
+  if(reverse == FALSE) {
+
+    palette <- palette
+
+  }
 
   ret <- ggplot2::scale_fill_manual(...,
-                                    values =
-                                      c(bcggtheme::bcg_green_1,
-                                        bcggtheme::bcg_green_2,
-                                        bcggtheme::bcg_green_3,
-                                        bcggtheme::bcg_green_4,
-                                        bcggtheme::bcg_yellow,
-                                        bcggtheme::bcg_grey)
-                                    )
+                                      values =
+                                        palette
+  )
+
 
 return(ret)
 

@@ -1,46 +1,75 @@
 #' Hex code for the main BCG green
 #'
-#' #2ABA75
+#' #29BA74
 #'
-"bcg_green_1"
+"bcg_green_bright"
 
+#' Hex code for mint green
+#'
+#' #3EAD92
+#'
+"bcg_green_mint"
 
-#' Hex code for a darker BCG green
+#' Hex code for jade
 #'
-#' #1A7A55
+#' #197A56
 #'
-"bcg_green_2"
+"bcg_green_jade"
 
-#' Hex code for a darker BCG green
+#' Hex code for forest green
 #'
-#' #60DB66
+#' #03522D
 #'
-"bcg_green_3"
-
-#' Hex code for an electric BCG green
-#'
-#' #64A64F
-#'
-"bcg_green_4"
+"bcg_green_forest"
 
 #' Hex code for an classic BCG yellow
 #'
-#' #DEE341
+#' #D4DF33
 #'
 "bcg_yellow"
 
-#' Hex code for an classic BCG red
+#' Hex code for a true blue
 #'
-#' #E71B56
+#' #295E7E
 #'
-"bcg_red"
+"bcg_blue_true"
 
-#' Hex code for BCG grey
+#' Hex code for cranberry
 #'
-#' #808080
+#' #670F31
 #'
-"bcg_grey"
+"bcg_red_cranberry"
 
+#' Hex code for magenta
+#'
+#' #E71C57
+#'
+"bcg_red_magenta"
 
+#' Hex code for dark yellow
+#'
+#' #A8B21C
+#'
+"bcg_yellow_dark"
+
+#' Hex code for bright blue
+#'
+#' #A8B21C
+#'
+"bcg_yellow_dark"
+
+#' Hex code for soft grey
+#'
+#' #30C1D7
+#'
+"bcg_blue_bright"
+
+#' Hex code for medium grey
+#'
+#' #6E6F73
+#'
+"bcg_grey_medium"
+
+# change colours by defining them in the environment, and then using usethis::use_data(x)
 
 

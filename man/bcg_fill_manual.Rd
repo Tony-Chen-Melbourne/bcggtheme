@@ -2,10 +2,15 @@
 % Please edit documentation in R/bcg_fill_manual.R
 \name{bcg_fill_manual}
 \alias{bcg_fill_manual}
-\title{Easily fill your ggplot data using the BCG palette, up to 6 colour}
+\title{Easily fill your ggplot data using the BCG palette}
 \usage{
-bcg_fill_manual(...)
+bcg_fill_manual(..., pal = "base", reverse = FALSE)
+}
+\arguments{
+\item{pal}{Choose the colour palette, either "base" or "traffic". Defaults to "base".}
+
+\item{reverse}{Flip the order of colours in the palette. TRUE or FALSE. Defaults to FALSE.}
 }
 \description{
-Easily fill your ggplot data using the BCG palette, up to 6 colour
+Easily fill your ggplot data using the BCG palette
 }
