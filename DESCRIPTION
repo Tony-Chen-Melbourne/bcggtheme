@@ -26,4 +26,5 @@ Imports:
     stringr,
     officer,
     rvg,
-    unikn
+    unikn,
+    extrafont
