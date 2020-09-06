@@ -17,7 +17,9 @@ The run the code:
 
 `extrafont::font_import()`
 
-This will take a few minutes to do its thing, after which you're good to go.
+This will take a few minutes to do its thing, after which you're good to go. 
+
+Currently the package only works on Windows computers. That isn't a major problem given that BCG uses windows computers, but is something which I'd like to fix in future versions of this package.
 
 The vignettes file explains how the package works.
 
