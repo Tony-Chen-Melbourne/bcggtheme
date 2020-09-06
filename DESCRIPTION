@@ -25,4 +25,5 @@ Imports:
     ggplot2,
     stringr,
     officer,
-    rvg
+    rvg,
+    unikn

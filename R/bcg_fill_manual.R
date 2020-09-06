@@ -1,6 +1,6 @@
 #' Easily fill your ggplot data using the BCG palette
 #' @name bcg_fill_manual
-#' @param pal Choose the colour palette, either "base" or "traffic". Defaults to "base".
+#' @param pal Choose the colour palette, either "base" or "traffic2" or "traffic3". Defaults to "base".
 #' @param reverse Flip the order of colours in the palette. TRUE or FALSE. Defaults to FALSE.
 #' @import ggplot2
 #' @export

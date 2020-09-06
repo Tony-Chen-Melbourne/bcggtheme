@@ -19,7 +19,7 @@ update_bcg_geoms <- function() {
                        list(size = 3 / .pt))
 
   update_geom_defaults("text",
-                       list(size = 18 / .pt))
+                       list(size = base_size / .pt))
 
   update_geom_defaults("path",
                        list(size = 3 / .pt))

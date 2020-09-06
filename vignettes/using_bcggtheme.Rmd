@@ -2,7 +2,7 @@
 title: "Using bcggtheme"
 author: "Tony Chen"
 output: 
-  html_document:
+  pdf_document:
 vignette: >
   %\VignetteIndexEntry{Using bcggtheme}
   %\VignetteEngine{knitr::rmarkdown}
@@ -14,16 +14,29 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.height = 4,
-  fig.width = 6
+  fig.width = 6,
+  dev = "cairo_pdf"
 )
+
 library(tidyverse)
 library(bcggtheme)
-
+library(unikn)
 ```
 
 ## Using the package
 
 This vignette explains how to use `bcggtheme` to apply BCG-style chart formatting to charts made in `R` using `ggplot`.
+
+Download `bcggtheme` using
+
+`devtools::install_github("Tony-Chen-Melbourne/bcggtheme")`
+
+After downloading the package, there is one more step required before it will work. The base font in the package is MS Trebuchet, which needs to be loaded into R. This can be done using the `extrafont` package.
+
+`install.packages(extrafont)`
+`extrafont::font_import()`
+
+This will take a few minutes to do its thing, after which you're good to go. The import only needs to be done once, after which bcggtheme takes care of the rest.
 
 `bcggtheme` allows for two different chart styles: classic and modern.
 
@@ -172,11 +185,41 @@ Note that the same functionality applies to `bcg_theme_classic()`.
 
 ### Colours
 
-The package is loaded with 6 standard colours. Both `bcg_colour_manual` and `bcg_fill_manual` choose colours in the following order, from top to bottom.
+The package is loaded with all standard BCG colours. They are divided across three palettes: traffic2, traffic3, and base (picking colours from left to right)
 
 ```{r, out.width = "750px", echo = FALSE}
-knitr::include_graphics("palette.png")
+unikn::seecol(bcg_palette(pal = "traffic2"),
+       pal_names = c("bcg_green_bright",
+                     "bcg_red_magenta"
+                     ),
+       title = "Traffic palette2",
+       grid = FALSE)
+
+unikn::seecol(bcg_palette(pal = "traffic3"),
+       pal_names = c("bcg_green_bright",
+                     "bcg_yellow",
+                     "bcg_red_magenta"
+                     ),
+       title = "Traffic palette3",
+       grid = FALSE)
+
+unikn::seecol(bcg_palette(pal = "base"),
+       pal_names = c("bcg_green_mint",
+                     "bcg_green_jade",
+                     "bcg_green_forest",
+                     "bcg_yellow",
+                     "bcg_blue_true",
+                     "bcg_red_cranberry",
+                     "bcg_blue_bright",
+                     "bcg_yellow_dark"
+                     
+       ),
+       title = "Base palette",
+       grid = FALSE)
+
 ```
+
+`bcg_colour_manual` and `bcg_fill_manual` can use either palette by specifying `pal = "traffic"` or `pal = "base"`. The colouring order can also be reversed using the `reverse = TRUE`.
 
 ### Outputting charts from R
 

@@ -7,7 +7,7 @@
 bcg_palette(pal = "base")
 }
 \arguments{
-\item{pal}{Type of palette to pick, "base" or "traffic" - defaults to base}
+\item{pal}{Type of palette to pick, "base" or "traffic2" or "traffic3" - defaults to base}
 }
 \description{
 Output ggplot charts to pdf or png files

@@ -7,7 +7,7 @@
 bcg_colour_manual(..., pal = "base", reverse = FALSE)
 }
 \arguments{
-\item{pal}{Choose the colour palette, either "base" or "traffic". Defaults to "base".}
+\item{pal}{Choose the colour palette, either "base" or "traffic2" or "traffic3". Defaults to "base".}
 
 \item{reverse}{Flip the order of colours in the palette. TRUE or FALSE. Defaults to FALSE.}
 }
