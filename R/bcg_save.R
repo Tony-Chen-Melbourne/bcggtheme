@@ -13,7 +13,6 @@ bcg_save <- function(...,
   plot <- ggplot2::last_plot()
 
   # Getting the text labels
-  title <- plot$labels$title
   subtitle <- plot$labels$subtitle
   caption <- plot$labels$caption
 
@@ -24,10 +23,7 @@ bcg_save <- function(...,
 
   # Creating all the file names
   half_slide_name <- stringr::str_c(dir,"/", base_name, "_halfslide.", filetype)
-  half_slide_name_sans_title <- stringr::str_c(dir,"/", base_name, "_halfslide_sans_title.", filetype)
-
   full_slide_name <- stringr::str_c(dir,"/", base_name, "_fullslide.", filetype)
-  full_slide_name_sans_title <- stringr::str_c(dir,"/", base_name, "_fullslide_sans_title.", filetype)
 
   # Creating the file directory if it doesn't already exist
   if(!dir.exists(dir)) {
@@ -37,20 +33,15 @@ bcg_save <- function(...,
   }
 
 # Creating different versions of the chart
-  # Without labels
-  plot_sans_title <- plot + labs(title = NULL,
-                                      subtitle = NULL,
-                                      caption = NULL
-  )
 
   # Half slide
-  plot_half <- plot + labs(title = title %>% stringr::str_wrap(width = 35),
+  plot_half <- plot + labs(title = NULL,
                            subtitle = subtitle %>% stringr::str_wrap(width = 35),
                            caption = caption %>% stringr::str_wrap(width = 55)
   )
 
   # Full slide
-  plot_full <- plot + labs(title = title %>% stringr::str_wrap(width = 90),
+  plot_full <- plot + labs(title = NULL,
                            subtitle = subtitle %>% stringr::str_wrap(width = 90),
                            caption = caption %>% stringr::str_wrap(width = 150)
   )
@@ -59,19 +50,11 @@ bcg_save <- function(...,
   ret <- if(type == "halfslide") {
 
     ggplot2::ggsave(...,
-                    file=half_slide_name_sans_title,
-                    plot = plot_sans_title,
-                    width=12, height=14,
-                    units = "cm",
-                    dpi = 400,
-                    type = "cairo")
-
-    ggplot2::ggsave(...,
                     file=half_slide_name,
                     plot = plot_half,
                     width=12, height=14,
                     units = "cm",
-                    dpi = 400,
+                    dpi = "retina",
                     type = "cairo")
 
   }
@@ -79,19 +62,11 @@ bcg_save <- function(...,
   else if (type == "fullslide") {
 
   ggplot2::ggsave(...,
-                    file=full_slide_name_sans_title,
-                    plot = plot_sans_title,
-                    width=28, height=14,
-                    units = "cm",
-                    dpi = 400,
-                  type = "cairo")
-
-  ggplot2::ggsave(...,
                     file=full_slide_name,
                     plot = plot_full,
                     width=28, height=14,
                     units = "cm",
-                    dpi = 400,
+                    dpi = "retina",
                   type = "cairo")
 
   }
@@ -101,37 +76,22 @@ bcg_save <- function(...,
 
 # Half slides
     ggplot2::ggsave(...,
-                    file=half_slide_name_sans_title,
-                    plot = plot_sans_title,
-                    width=12, height=14,
-                    units = "cm",
-                    dpi = 400,
-                    type = "cairo")
-
-    ggplot2::ggsave(...,
                     file=half_slide_name,
                     plot = plot_half,
                     width=12, height=14,
                     units = "cm",
-                    dpi = 400,
+                    dpi = "retina",
                     type = "cairo")
 
 # Full slides
-    ggplot2::ggsave(...,
-                    file=full_slide_name_sans_title,
-                    plot = plot_sans_title,
-                    width=28, height=14,
-                    units = "cm",
-                    dpi = 400,
-                    type = "cairo")
+  ggplot2::ggsave(...,
+                  file=full_slide_name,
+                  plot = plot_full,
+                  width=28, height=14,
+                  units = "cm",
+                  dpi = "retina",
+                  type = "cairo")
 
-    ggplot2::ggsave(...,
-                    file=full_slide_name,
-                    plot = plot_full,
-                    width=28, height=14,
-                    units = "cm",
-                    dpi = 400,
-                    type = "cairo")
 
   }
 

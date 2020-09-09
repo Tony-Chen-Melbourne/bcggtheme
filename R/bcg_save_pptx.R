@@ -25,10 +25,8 @@ bcg_save_pptx <- function(...,
   base_name <- tools::file_path_sans_ext(basename(filename))
 
   half_slide_name <- stringr::str_c(dir,"/", base_name, "_halfslide.", filetype)
-  half_slide_name_sans_title <- stringr::str_c(dir,"/", base_name, "_halfslide_sans_title.", filetype)
 
   full_slide_name <- stringr::str_c(dir,"/", base_name, "_fullslide.", filetype)
-  full_slide_name_sans_title <- stringr::str_c(dir,"/", base_name, "_fullslide_sans_title.", filetype)
 
   # Creating the file directory if it doesn't already exist
   if(!dir.exists(dir)) {
@@ -39,20 +37,14 @@ bcg_save_pptx <- function(...,
 
   # Creating different versions for outputting
 
-  #No title
-  plot_sans_title <- base_plot + labs(title = NULL,
-                                      subtitle = NULL,
-                                      caption = NULL
-  )
-
   # Half size
-  plot_half <- base_plot + ggplot2::labs(title = title %>% stringr::str_wrap(width = 35),
+  plot_half <- base_plot + ggplot2::labs(title = NULL,
                                     subtitle = subtitle %>% stringr::str_wrap(width = 35),
                                     caption = caption %>% stringr::str_wrap(width = 55)
   )
 
   # Full size
-  plot_full <- base_plot + labs(title = title %>% stringr::str_wrap(width = 90),
+  plot_full <- base_plot + labs(title = NULL,
                            subtitle = subtitle %>% stringr::str_wrap(width = 90),
                            caption = caption %>% stringr::str_wrap(width = 150)
   )
@@ -69,13 +61,6 @@ bcg_save_pptx <- function(...,
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
       officer::add_slide(layout = "half slide", master = "Office Theme") %>%
-      officer::ph_with(rvg::dml(ggobj = plot_sans_title),
-                       location = ph_location_label(ph_label = "Content Placeholder 2")) %>%
-      print(target = half_slide_name_sans_title)
-
-    officer::read_pptx(ppt_base) %>%
-      officer::remove_slide() %>%
-      officer::add_slide(layout = "half slide", master = "Office Theme") %>%
       officer::ph_with(rvg::dml(ggobj = plot_half),
                        ph_location_label(ph_label = "Content Placeholder 2")) %>%
       print(target = half_slide_name)
@@ -83,13 +68,6 @@ bcg_save_pptx <- function(...,
   }
 
   else if (type == "fullslide") {
-
-    officer::read_pptx(ppt_base) %>%
-      officer::remove_slide() %>%
-      officer::add_slide(layout = "full slide", master = "Office Theme") %>%
-      officer::ph_with(rvg::dml(ggobj = plot_sans_title),
-                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
-      print(target = full_slide_name_sans_title)
 
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
@@ -102,14 +80,7 @@ bcg_save_pptx <- function(...,
 
   else if (type == "all") {
 
-    # Both half slide versions
-    officer::read_pptx(ppt_base) %>%
-      officer::remove_slide() %>%
-      officer::add_slide(layout = "half slide", master = "Office Theme") %>%
-      officer::ph_with(rvg::dml(ggobj = plot_sans_title),
-                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
-      print(target = half_slide_name_sans_title)
-
+    # half slide versions
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
       officer::add_slide(layout = "half slide", master = "Office Theme") %>%
@@ -117,14 +88,7 @@ bcg_save_pptx <- function(...,
                        ph_location_label(ph_label = "Content Placeholder 2")) %>%
       print(target = half_slide_name)
 
-    # Both full slide versions
-    officer::read_pptx(ppt_base) %>%
-      officer::remove_slide() %>%
-      officer::add_slide(layout = "full slide", master = "Office Theme") %>%
-      officer::ph_with(rvg::dml(ggobj = plot_sans_title),
-                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
-      print(target = full_slide_name_sans_title)
-
+    # full slide versions
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
       officer::add_slide(layout = "full slide", master = "Office Theme") %>%
