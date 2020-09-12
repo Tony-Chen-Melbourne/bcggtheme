@@ -6,6 +6,7 @@
 \usage{
 bcg_theme_modern(
   base_size = 16,
+  background = "white",
   legend = "bottom",
   y_axis = FALSE,
   flipped = FALSE
@@ -13,6 +14,8 @@ bcg_theme_modern(
 }
 \arguments{
 \item{base_size}{Size for text elements. Defaults to 18}
+
+\item{background}{"white" by default.}
 
 \item{legend}{"bottom" by default.}
 

@@ -9,7 +9,7 @@ bcg_save(..., filename, type)
 \arguments{
 \item{filename}{Name for output file}
 
-\item{type}{Type of chart to output, either "halfslide" or "fullslide" or "all"}
+\item{type}{Type of chart to output, either "third", "half", "two third", "large", "full", or "all"}
 }
 \description{
 Output ggplot charts to pdf or png files

@@ -1,7 +1,7 @@
 #' Output ggplot charts to powerpoint files
 #' @name bcg_save_pptx
 #' @param filename Name for output file
-#' @param type Type of chart to output, either "halfslide" or "fullslide" or "all"
+#' @param type Type of chart to output, either "third", "half", "two third", "large", "full", or "all"
 #' @import ggplot2
 #' @import stringr
 #' @import officer
@@ -24,9 +24,11 @@ bcg_save_pptx <- function(...,
   filetype <- tools::file_ext(filename)
   base_name <- tools::file_path_sans_ext(basename(filename))
 
-  half_slide_name <- stringr::str_c(dir,"/", base_name, "_halfslide.", filetype)
-
-  full_slide_name <- stringr::str_c(dir,"/", base_name, "_fullslide.", filetype)
+  third_slide_name <- stringr::str_c(dir,"/", base_name, "_third.", filetype)
+  half_slide_name <- stringr::str_c(dir,"/", base_name, "_half.", filetype)
+  two_third_slide_name <- stringr::str_c(dir,"/", base_name, "_two_third.", filetype)
+  large_slide_name <- stringr::str_c(dir,"/", base_name, "_large.", filetype)
+  full_slide_name <- stringr::str_c(dir,"/", base_name, "_full.", filetype)
 
   # Creating the file directory if it doesn't already exist
   if(!dir.exists(dir)) {
@@ -35,28 +37,44 @@ bcg_save_pptx <- function(...,
 
   }
 
-  # Creating different versions for outputting
-
-  # Half size
-  plot_half <- base_plot + ggplot2::labs(title = NULL,
-                                    subtitle = subtitle %>% stringr::str_wrap(width = 35),
-                                    caption = caption %>% stringr::str_wrap(width = 55)
-  )
-
-  # Full size
-  plot_full <- base_plot + labs(title = NULL,
-                           subtitle = subtitle %>% stringr::str_wrap(width = 90),
-                           caption = caption %>% stringr::str_wrap(width = 150)
-  )
+# There are five types of output size:
+  # One Third size - 11 cm wide
+  # Half size - 14cm wide
+  # Two third size - 18cm wide
+  # Large size - 24cm wide
+  # Full size - 30cm wide
 
   # Getting the ppt base, and calling the information for officer
   ppt_base <- system.file("extdata", "base_ppt.pptx", package = "bcggtheme")
 
+  #ppt_base <- read_pptx(ppt_base)
   #layout_summary(ppt_base)
-  #layout_properties (ppt_base, layout = "Title and Content" )
+  #layout_properties (ppt_base, layout = "full slide" )
 
-  # Setting up halfslide, fullslide, and all versions
-  ret <- if(type == "halfslide") {
+  # Setting up all versions
+
+  ret <- if(type == "one third") {
+
+    plot_third <- bcggtheme::wrap_titles(base_plot = base_plot,
+                                         subtitle = subtitle,
+                                         caption = caption,
+                                         width = 11)
+
+    officer::read_pptx(ppt_base) %>%
+      officer::remove_slide() %>%
+      officer::add_slide(layout = "one third slide", master = "Office Theme") %>%
+      officer::ph_with(rvg::dml(ggobj = plot_third),
+                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
+      print(target = third_slide_name)
+
+  }
+
+  else if(type == "half") {
+
+    plot_half <- bcggtheme::wrap_titles(base_plot = base_plot,
+                                        subtitle = subtitle,
+                                        caption = caption,
+                                        width = 14)
 
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
@@ -67,7 +85,45 @@ bcg_save_pptx <- function(...,
 
   }
 
-  else if (type == "fullslide") {
+  else if(type == "two third") {
+
+    plot_two_third <- bcggtheme::wrap_titles(base_plot = base_plot,
+                                             subtitle = subtitle,
+                                             caption = caption,
+                                             width = 18)
+
+    officer::read_pptx(ppt_base) %>%
+      officer::remove_slide() %>%
+      officer::add_slide(layout = "two third slide", master = "Office Theme") %>%
+      officer::ph_with(rvg::dml(ggobj = plot_two_third),
+                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
+      print(target = two_third_slide_name)
+
+  }
+
+
+  else if(type == "large") {
+
+    plot_large <- bcggtheme::wrap_titles(base_plot = base_plot,
+                                         subtitle = subtitle,
+                                         caption = caption,
+                                         width = 24)
+
+    officer::read_pptx(ppt_base) %>%
+      officer::remove_slide() %>%
+      officer::add_slide(layout = "large slide", master = "Office Theme") %>%
+      officer::ph_with(rvg::dml(ggobj = plot_large),
+                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
+      print(target = large_slide_name)
+
+  }
+
+  else if (type == "full") {
+
+    plot_full <- bcggtheme::wrap_titles(base_plot = base_plot,
+                                        subtitle = subtitle,
+                                        caption = caption,
+                                        width = 30)
 
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
@@ -80,7 +136,35 @@ bcg_save_pptx <- function(...,
 
   else if (type == "all") {
 
-    # half slide versions
+    plot_third <- bcggtheme::wrap_titles(base_plot = base_plot,
+                                         subtitle = subtitle,
+                                         caption = caption,
+                                         width = 11)
+    plot_half <- bcggtheme::wrap_titles(base_plot = base_plot,
+                                        subtitle = subtitle,
+                                        caption = caption,
+                                        width = 14)
+    plot_two_third <- bcggtheme::wrap_titles(base_plot = base_plot,
+                                             subtitle = subtitle,
+                                             caption = caption,
+                                             width = 18)
+    plot_large <- bcggtheme::wrap_titles(base_plot = base_plot,
+                                         subtitle = subtitle,
+                                         caption = caption,
+                                         width = 24)
+    plot_full <- bcggtheme::wrap_titles(base_plot = base_plot,
+                                        subtitle = subtitle,
+                                        caption = caption,
+                                        width = 30)
+
+    # Outputting all types
+    officer::read_pptx(ppt_base) %>%
+      officer::remove_slide() %>%
+      officer::add_slide(layout = "one third slide", master = "Office Theme") %>%
+      officer::ph_with(rvg::dml(ggobj = plot_third),
+                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
+      print(target = third_slide_name)
+
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
       officer::add_slide(layout = "half slide", master = "Office Theme") %>%
@@ -88,7 +172,20 @@ bcg_save_pptx <- function(...,
                        ph_location_label(ph_label = "Content Placeholder 2")) %>%
       print(target = half_slide_name)
 
-    # full slide versions
+    officer::read_pptx(ppt_base) %>%
+      officer::remove_slide() %>%
+      officer::add_slide(layout = "two third slide", master = "Office Theme") %>%
+      officer::ph_with(rvg::dml(ggobj = plot_two_third),
+                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
+      print(target = two_third_slide_name)
+
+    officer::read_pptx(ppt_base) %>%
+      officer::remove_slide() %>%
+      officer::add_slide(layout = "large slide", master = "Office Theme") %>%
+      officer::ph_with(rvg::dml(ggobj = plot_large),
+                       ph_location_label(ph_label = "Content Placeholder 2")) %>%
+      print(target = large_slide_name)
+
     officer::read_pptx(ppt_base) %>%
       officer::remove_slide() %>%
       officer::add_slide(layout = "full slide", master = "Office Theme") %>%
@@ -100,7 +197,7 @@ bcg_save_pptx <- function(...,
   }
 
 
-  else {"type only takes values of halfslide, fullslide, or all"}
+  else {"type only takes values of one third, half, two third, large, full, or all"}
 
 
   return(ret)

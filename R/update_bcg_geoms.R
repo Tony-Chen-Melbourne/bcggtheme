@@ -19,19 +19,23 @@ update_bcg_geoms <- function() {
                        list(size = 3 / .pt))
 
   update_geom_defaults("text",
-                       list(size = base_size / .pt))
+                       list(size = base_size / .pt,
+                            family="Trebuchet MS"))
 
   update_geom_defaults("path",
                        list(size = 3 / .pt))
 
   update_geom_defaults(ggrepel::GeomTextRepel,
-                       list(size = base_size/ .pt))
+                       list(size = base_size/ .pt,
+                            family="Trebuchet MS"))
 
   update_geom_defaults(ggrepel::GeomLabelRepel,
-                       list(size = base_size/ .pt))
+                       list(size = base_size/ .pt,
+                            family="Trebuchet MS"))
 
   update_geom_defaults("label",
-                       list(size = base_size/ .pt))
+                       list(size = base_size/ .pt,
+                            family="Trebuchet MS"))
 
 
 

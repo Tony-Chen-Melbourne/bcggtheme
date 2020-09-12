@@ -21,6 +21,7 @@ knitr::opts_chunk$set(
 library(tidyverse)
 library(bcggtheme)
 library(unikn)
+library(scales)
 ```
 
 ## Using the package
@@ -44,7 +45,7 @@ This will take a few minutes to do its thing, after which you're good to go. The
 
 For example, using the in-built `iris` dataset:
 
-```{r}
+```{r base_create}
 plot <- ggplot(iris,
                aes(x = Sepal.Length,
                    y = Sepal.Width,
@@ -55,7 +56,7 @@ plot <- ggplot(iris,
              colour = "Species")
 ```
 
-```{r, echo = FALSE}
+```{r base_plot, echo = FALSE}
 plot
 ```
 
@@ -86,12 +87,20 @@ plot +
 
 ```
 
+The standard background colour for `bcggtheme` is white. In order to get the background the same grey colour as a BCG key message, use `bcg_theme_classic(background = "grey)`
+
+```{r}
+plot +
+  bcg_theme_classic(background = "grey") +
+  bcg_scale_y_continuous() +
+  bcg_colour_manual()
+```
 
 ### BCG Modern
 
 This works best for bar charts, as will be explained later. Starting with a made-up data set:
 
-```{r}
+```{r modern}
 data <- tribble(~person, ~citations, ~school,
                 "Summers", 156191, "Harvard",
                 "Duflo", 65808, "MIT",
@@ -117,7 +126,7 @@ Then we can add the overlaying theme, using `bcg_theme_modern`. The default opti
 
 ```{r}
 plot +
-  bcg_theme_modern()
+  bcg_theme_modern(legend = "right")
 
 ```
 
@@ -126,7 +135,7 @@ Then we can add the other bells-and-whistles as before, noting that the relevant
 
 ```{r}
 plot +
-  bcg_theme_modern() +
+  bcg_theme_modern(legend = "right") +
   bcg_scale_y_continuous() +
   bcg_fill_manual()
 
@@ -137,7 +146,7 @@ Clearly this chart isn't very useful, because we don't know anything about the a
 
 ```{r}
 plot +
-  bcg_theme_modern() +
+  bcg_theme_modern(legend = "right") +
   bcg_scale_y_continuous(limits = c(0,200000)) +
   bcg_fill_manual() +
   bcg_geom_label(aes(label = scales::comma(citations)), nudge_y = 20000)
@@ -148,7 +157,7 @@ With the modern version we can add the y axis line back in, using `bcg_theme_mod
 
 ```{r}
 plot +
-  bcg_theme_modern(y_axis = TRUE) +
+  bcg_theme_modern(legend = "right", y_axis = TRUE) +
   bcg_scale_y_continuous(limits = c(0,200000)) +
   bcg_fill_manual() +
   bcg_geom_label(aes(label = scales::comma(citations)), nudge_y = 20000)
@@ -162,7 +171,7 @@ plot +
 
 ```{r}
 plot +
-  bcg_theme_modern(y_axis = TRUE) +
+  bcg_theme_modern(legend = "right", y_axis = TRUE, background = "grey") +
   bcg_scale_y_continuous(limits = c(0,200000)) +
   bcg_fill_manual() +
   bcg_geom_label(aes(label = scales::comma(citations)), nudge_y = 20000) +
@@ -172,9 +181,12 @@ plot +
 
 Then setting  `bcg_theme_modern(flipped = TRUE)`
 
-```{r}
+```{r modern_flipped}
 plot +
-  bcg_theme_modern(y_axis = TRUE, flipped = TRUE) +
+  bcg_theme_modern(legend = "right",
+                   y_axis = TRUE,
+                   background = "grey",
+                   flipped = TRUE) +
   bcg_scale_y_continuous(limits = c(0,200000)) +
   bcg_fill_manual() +
   bcg_geom_label(aes(label = scales::comma(citations)), nudge_y = 20000) +
@@ -185,65 +197,47 @@ Note that the same functionality applies to `bcg_theme_classic()`.
 
 ### Colours
 
-The package is loaded with all standard BCG colours. They are divided across three palettes: traffic2, traffic3, and base (picking colours from left to right)
+The package is loaded with most standard BCG colours. Colours and palettes are tedious to add, so it's a work in progress and some may be missing. The colours are divided across three palettes: traffic2, traffic3, and base (picking colours from left to right)
 
-```{r, out.width = "750px", echo = FALSE}
-unikn::seecol(bcg_palette(pal = "traffic2"),
-       pal_names = c("bcg_green_bright",
-                     "bcg_red_magenta"
-                     ),
-       title = "Traffic palette2",
-       grid = FALSE)
+![Traffic palette 2](traffic2.png)
 
-unikn::seecol(bcg_palette(pal = "traffic3"),
-       pal_names = c("bcg_green_bright",
-                     "bcg_yellow",
-                     "bcg_red_magenta"
-                     ),
-       title = "Traffic palette3",
-       grid = FALSE)
+![Traffic palette 3](traffic3.png)
 
-unikn::seecol(bcg_palette(pal = "base"),
-       pal_names = c("bcg_green_mint",
-                     "bcg_green_jade",
-                     "bcg_green_forest",
-                     "bcg_yellow",
-                     "bcg_blue_true",
-                     "bcg_red_cranberry",
-                     "bcg_blue_bright",
-                     "bcg_yellow_dark"
-                     
-       ),
-       title = "Base palette",
-       grid = FALSE)
-
-```
+![base palette](base.png)
 
 `bcg_colour_manual` and `bcg_fill_manual` can use either palette by specifying `pal = "traffic"` or `pal = "base"`. The colouring order can also be reversed using the `reverse = TRUE`.
 
 ### Outputting charts from R
 
-There are two functions to output charts: `bcg_save` and `bcg_save_pptx`. They automatically save the last object created through ggplot. Both output charts in either a half-slide (designed to fit two charts onto one powerpoint slide) or full-slide (designed to fill up a whole powerpoint slide). 
+There are two functions to output charts: `bcg_save` and `bcg_save_pptx`. They automatically save the last object created through ggplot.
 
-`bcg_save` works best with `.png` files, currently it is unable to output `.pdf` files.
+Both output charts in up to 5 formats:
 
-The following code would create a folder called `test` within the working directory, with two png charts contained within
+- "third": 11 cm width $\time$ 14cm height
+- "half": 14 cm width $\time$ 14cm height
+- "two third": 18 cm width $\time$ 14cm height
+- "large": 24 cm width $\time$ 14cm height
+- "full": 30 cm width $\time$ 14cm height
+
+These sizes are designed to replicate the options available in ThinkCell.
+
+`bcg_save` and `bcg_save_pptx` can save any one of these formats through `type = "chosen format"`. Alternatively, all five formats can be saved by setting `type = "all"`.
+
+For example, the following code would create a folder called `test` within the working directory, with the relevant png charts contained within
 
 ```{r eval = FALSE}
-bcg_save(filename = "test.png", type = "halfslide") # Creates just a half slide
-bcg_save(filename = "test.png", type = "fullslide") # Creates just a full slide
-bcg_save(filename = "test.png", type = "all") # Creates both 
+bcg_save(filename = "test.png", type = "third") # Creates just a third slide
+bcg_save(filename = "test.png", type = "all") # Creates all five types
 ```
 
-The following code would create a folder called `test` within the working directory, with two pptx charts contained within. The powerpoint slides contain editable graphics, which can be easily copied across to your desired presentation.
+The following code would create a folder called `test` within the working directory, with the relevant pptx charts contained within. The powerpoint slides contain editable graphics, which can be easily copied across to your desired presentation.
 
 ```{r eval = FALSE}
-bcg_save_pptx(filename = "test.pptx", type = "halfslide") # Creates just a half slide
-bcg_save_pptx(filename = "test.pptx", type = "fullslide") # Creates just a full slide
-bcg_save_pptx(filename = "test.pptx", type = "all") # Creates both 
+bcg_save_pptx(filename = "test.pptx", type = "half") # Creates just a half slide
+bcg_save_pptx(filename = "test.pptx", type = "all") # Creates all five types
 ```
 
-
+`bcg_save` works best with `.png` files, currently it is unable to output `.pdf` files. (This shouldn't be a problem. In this line of work, I cannot imagine why you would want to directly output to pdf).
 
 
 

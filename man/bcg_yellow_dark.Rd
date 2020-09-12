@@ -6,17 +6,11 @@
 \title{Hex code for dark yellow}
 \format{
 An object of class \code{character} of length 1.
-
-An object of class \code{character} of length 1.
 }
 \usage{
 bcg_yellow_dark
-
-bcg_yellow_dark
 }
 \description{
-#A8B21C
-
 #A8B21C
 }
 \keyword{datasets}

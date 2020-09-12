@@ -3,24 +3,28 @@
 #' @param base_size Size for text elements. Defaults to 16
 #' @param legend "bottom" by default.
 #' @param flipped "FALSE" by default
+#' @param background "white" by default
 #' @import ggplot2
 #' @import extrafont
 #' @export
 
 bcg_theme_classic <- function(base_size = 16,
-                               legend = "bottom",
-                               flipped = FALSE) {
+                              background = "white",
+                              legend = "bottom",
+                              flipped = FALSE) {
 
   extrafont::loadfonts(device = "win", quiet = TRUE)
 
   ret <- ggplot2::theme_classic() +
     ggplot2::theme(text = element_text(family="Trebuchet MS",
-                              size = base_size),
-          axis.text.x = element_text(colour = "black", size = base_size),
+                              size = base_size,
+                              colour = bcggtheme::bcg_grey_text
+                              ),
+          axis.text.x = element_text(size = base_size),
           axis.title.x = element_text(hjust = 1),
-          axis.text.y = element_text(colour = "black", size = base_size),
-          axis.line = element_line(color = bcggtheme::bcg_grey_soft),
-          axis.ticks = element_line(colour = bcggtheme::bcg_grey_soft),
+          axis.text.y = element_text(size = base_size),
+          axis.line = element_line(color = bcggtheme::bcg_grey_axis),
+          axis.ticks = element_line(colour = bcggtheme::bcg_grey_axis),
           axis.ticks.length=unit(.2, "cm"),
           plot.title = element_text(size=(base_size + 2)),
           plot.subtitle = element_text(size=base_size),
@@ -32,11 +36,12 @@ bcg_theme_classic <- function(base_size = 16,
           legend.text = element_text(size = base_size - 4)) +
     ggplot2::theme(strip.background = element_blank())
 
+  # Account for flipped
 
   if(flipped == TRUE) {
 
 ret <- ret +
-  theme(axis.line.x = element_blank(),
+  ggplot2::theme(axis.line.x = element_blank(),
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank()
         )
@@ -45,6 +50,21 @@ ret <- ret +
   if(flipped == FALSE) {
 
     ret <- ret
+  }
+
+  # Accounting for background
+  if(background == "white") {
+
+    ret <- ret
+  }
+
+  if(background == "grey") {
+    ret <- ret +
+      ggplot2::theme(
+        plot.background = element_rect(fill = bcggtheme::bcg_grey_background),
+        panel.background = element_rect(fill = bcggtheme::bcg_grey_background),
+        legend.background = element_rect(fill = bcg_grey_background)
+      )
   }
 
 # Calling an internal function to update the geoms

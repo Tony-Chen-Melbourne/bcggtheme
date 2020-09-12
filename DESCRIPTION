@@ -27,4 +27,5 @@ Imports:
     officer,
     rvg,
     unikn,
-    extrafont
+    extrafont,
+    scales
