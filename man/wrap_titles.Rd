@@ -4,7 +4,7 @@
 \alias{wrap_titles}
 \title{Helper function for use in bcg_save and bcg_save_pptx}
 \usage{
-wrap_titles(base_plot, title, subtitle, caption, width)
+wrap_titles(base_plot, subtitle, caption, x, width)
 }
 \arguments{
 \item{base_plot}{The ggplot object to wrap, called internally within save functions}
@@ -12,6 +12,8 @@ wrap_titles(base_plot, title, subtitle, caption, width)
 \item{subtitle}{Subtitle from the ggplot object to wrap, called internally within save functions}
 
 \item{caption}{Caption from the ggplot object to wrap, called internally within save functions}
+
+\item{x}{x-axis label from the ggplot object to wrap, called internally within save functions}
 
 \item{width}{Width in cm}
 }

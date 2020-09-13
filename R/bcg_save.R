@@ -15,6 +15,7 @@ bcg_save <- function(...,
   # Getting the text labels
   subtitle <- base_plot$labels$subtitle
   caption <- base_plot$labels$caption
+  x <- base_plot$labels$x
 
   # Creating the right names for outputting first
   dir <- tools::file_path_sans_ext(filename)
@@ -48,6 +49,7 @@ bcg_save <- function(...,
     plot_third <- bcggtheme::wrap_titles(base_plot = base_plot,
                                          subtitle = subtitle,
                                          caption = caption,
+                                         x = x,
                                          width = 11)
 
     ggplot2::ggsave(...,
@@ -65,6 +67,7 @@ bcg_save <- function(...,
     plot_half <- bcggtheme::wrap_titles(base_plot = base_plot,
                                         subtitle = subtitle,
                                         caption = caption,
+                                        x = x,
                                         width = 14)
 
     ggplot2::ggsave(...,
@@ -83,6 +86,7 @@ bcg_save <- function(...,
     plot_two_third <- bcggtheme::wrap_titles(base_plot = base_plot,
                                              subtitle = subtitle,
                                              caption = caption,
+                                             x = x,
                                              width = 18)
 
     ggplot2::ggsave(...,
@@ -101,6 +105,7 @@ bcg_save <- function(...,
     plot_large <- bcggtheme::wrap_titles(base_plot = base_plot,
                                          subtitle = subtitle,
                                          caption = caption,
+                                         x = x,
                                          width = 24)
 
     ggplot2::ggsave(...,
@@ -118,6 +123,7 @@ bcg_save <- function(...,
   plot_full <- bcggtheme::wrap_titles(base_plot = base_plot,
                                       subtitle = subtitle,
                                       caption = caption,
+                                      x = x,
                                       width = 30)
 
   ggplot2::ggsave(...,
@@ -135,26 +141,31 @@ bcg_save <- function(...,
     plot_third <- bcggtheme::wrap_titles(base_plot = base_plot,
                                          subtitle = subtitle,
                                          caption = caption,
+                                         x = x,
                                          width = 11)
 
     plot_half <- bcggtheme::wrap_titles(base_plot = base_plot,
                                         subtitle = subtitle,
                                         caption = caption,
+                                        x = x,
                                         width = 14)
 
     plot_two_third <- bcggtheme::wrap_titles(base_plot = base_plot,
                                              subtitle = subtitle,
                                              caption = caption,
+                                             x = x,
                                              width = 18)
 
     plot_large <- bcggtheme::wrap_titles(base_plot = base_plot,
                                          subtitle = subtitle,
                                          caption = caption,
+                                         x = x,
                                          width = 24)
 
     plot_full <- bcggtheme::wrap_titles(base_plot = base_plot,
                                         subtitle = subtitle,
                                         caption = caption,
+                                        x = x,
                                         width = 30)
 
     ggplot2::ggsave(...,

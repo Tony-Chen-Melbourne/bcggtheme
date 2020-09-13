@@ -27,9 +27,11 @@ bcg_theme_classic <- function(base_size = 16,
           axis.ticks = element_line(colour = bcggtheme::bcg_grey_axis),
           axis.ticks.length=unit(.2, "cm"),
           plot.title = element_text(size=(base_size + 2)),
-          plot.subtitle = element_text(size=base_size),
+          plot.subtitle = element_text(hjust = 0,
+                                       size=base_size),
           plot.caption = element_text(hjust = 0,
-                                      size = base_size - 6)
+                                      size = base_size - 6),
+          plot.title.position = "plot"
     ) +
     ggplot2::theme(legend.position = legend,
           legend.title = element_blank(),

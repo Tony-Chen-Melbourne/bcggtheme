@@ -114,6 +114,7 @@ plot <- ggplot(data,
         geom_col() +
         labs(x = "Economist",
              y = "",
+             subtitle = "Citations",
              colour = "School")
 ```
 
@@ -193,19 +194,21 @@ plot +
   coord_flip()
 
 ```
+
 Note that the same functionality applies to `bcg_theme_classic()`.
 
 ### Colours
 
 The package is loaded with most standard BCG colours. Colours and palettes are tedious to add, so it's a work in progress and some may be missing. The colours are divided across three palettes: traffic2, traffic3, and base (picking colours from left to right)
 
+`bcg_colour_manual` and `bcg_fill_manual` can use either palette by specifying `pal = "traffic"` or `pal = "base"`. The colouring order can also be reversed using the `reverse = TRUE`.
+<p>
 ![Traffic palette 2](traffic2.png)
 
 ![Traffic palette 3](traffic3.png)
 
 ![base palette](base.png)
-
-`bcg_colour_manual` and `bcg_fill_manual` can use either palette by specifying `pal = "traffic"` or `pal = "base"`. The colouring order can also be reversed using the `reverse = TRUE`.
+<p>
 
 ### Outputting charts from R
 
@@ -213,11 +216,11 @@ There are two functions to output charts: `bcg_save` and `bcg_save_pptx`. They a
 
 Both output charts in up to 5 formats:
 
-- "third": 11 cm width $\time$ 14cm height
-- "half": 14 cm width $\time$ 14cm height
-- "two third": 18 cm width $\time$ 14cm height
-- "large": 24 cm width $\time$ 14cm height
-- "full": 30 cm width $\time$ 14cm height
+- "third": 11 cm width $\times$ 14cm height
+- "half": 14 cm width $\times$ 14cm height
+- "two third": 18 cm width $\times$ 14cm height
+- "large": 24 cm width $\times$ 14cm height
+- "full": 30 cm width $\times$ 14cm height
 
 These sizes are designed to replicate the options available in ThinkCell.
 

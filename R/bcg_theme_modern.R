@@ -26,14 +26,17 @@ ggplot2::theme_classic() +
                               size = base_size,
                               colour = bcggtheme::bcg_grey_text),
           axis.text.x = element_text(size = base_size),
+          axis.title.x = element_text(hjust = 1),
           axis.line = element_line(color = bcggtheme::bcg_grey_axis),
           axis.line.y = element_blank(),
           axis.text.y = element_blank(),
           axis.ticks = element_blank(),
           plot.title = element_text(size=(base_size+2)),
-          plot.subtitle = element_text(size=base_size),
+          plot.subtitle = element_text(hjust = 0,
+                                       size=base_size),
           plot.caption = element_text(hjust = 0,
-                                      size = (base_size-6))
+                                      size = (base_size-6)),
+          plot.title.position = "plot"
     ) +
     theme(legend.position = legend,
           legend.title = element_blank(),
@@ -50,13 +53,16 @@ else if (y_axis == TRUE) {
                               size = base_size,
                               colour = bcggtheme::bcg_grey_text),
           axis.text.x = element_text(size = base_size),
+          axis.title.x = element_text(hjust = 1),
           axis.line = element_line(color = bcggtheme::bcg_grey_axis),
           #axis.line.y = element_blank(),
           axis.text.y = element_text(size = base_size),
           axis.ticks = element_blank(),
           plot.title = element_text(size=(base_size+2)),
-          plot.subtitle = element_text(size=base_size),
-          plot.caption = element_text(hjust = 0)
+          plot.subtitle = element_text(hjust = 0,
+                                       size=base_size),
+          plot.caption = element_text(hjust = 0),
+          plot.title.position = "plot"
     ) +
     theme(legend.position = legend,
           legend.title = element_blank(),

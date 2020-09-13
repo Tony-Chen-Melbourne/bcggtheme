@@ -15,9 +15,9 @@ bcg_save_pptx <- function(...,
   base_plot <- ggplot2::last_plot()
 
   # Getting the text labels
-  title <- base_plot$labels$title
   subtitle <- base_plot$labels$subtitle
   caption <- base_plot$labels$caption
+  x <- base_plot$labels$x
 
   # Creating the right names for outputting first
   dir <- tools::file_path_sans_ext(filename)
@@ -58,6 +58,7 @@ bcg_save_pptx <- function(...,
     plot_third <- bcggtheme::wrap_titles(base_plot = base_plot,
                                          subtitle = subtitle,
                                          caption = caption,
+                                         x=x,
                                          width = 11)
 
     officer::read_pptx(ppt_base) %>%
@@ -74,6 +75,7 @@ bcg_save_pptx <- function(...,
     plot_half <- bcggtheme::wrap_titles(base_plot = base_plot,
                                         subtitle = subtitle,
                                         caption = caption,
+                                        x=x,
                                         width = 14)
 
     officer::read_pptx(ppt_base) %>%
@@ -90,6 +92,7 @@ bcg_save_pptx <- function(...,
     plot_two_third <- bcggtheme::wrap_titles(base_plot = base_plot,
                                              subtitle = subtitle,
                                              caption = caption,
+                                             x=x,
                                              width = 18)
 
     officer::read_pptx(ppt_base) %>%
@@ -107,6 +110,7 @@ bcg_save_pptx <- function(...,
     plot_large <- bcggtheme::wrap_titles(base_plot = base_plot,
                                          subtitle = subtitle,
                                          caption = caption,
+                                         x=x,
                                          width = 24)
 
     officer::read_pptx(ppt_base) %>%
@@ -123,6 +127,7 @@ bcg_save_pptx <- function(...,
     plot_full <- bcggtheme::wrap_titles(base_plot = base_plot,
                                         subtitle = subtitle,
                                         caption = caption,
+                                        x=x,
                                         width = 30)
 
     officer::read_pptx(ppt_base) %>%
@@ -139,22 +144,27 @@ bcg_save_pptx <- function(...,
     plot_third <- bcggtheme::wrap_titles(base_plot = base_plot,
                                          subtitle = subtitle,
                                          caption = caption,
+                                         x=x,
                                          width = 11)
     plot_half <- bcggtheme::wrap_titles(base_plot = base_plot,
                                         subtitle = subtitle,
                                         caption = caption,
+                                        x=x,
                                         width = 14)
     plot_two_third <- bcggtheme::wrap_titles(base_plot = base_plot,
                                              subtitle = subtitle,
                                              caption = caption,
+                                             x=x,
                                              width = 18)
     plot_large <- bcggtheme::wrap_titles(base_plot = base_plot,
                                          subtitle = subtitle,
                                          caption = caption,
+                                         x=x,
                                          width = 24)
     plot_full <- bcggtheme::wrap_titles(base_plot = base_plot,
                                         subtitle = subtitle,
                                         caption = caption,
+                                        x=x,
                                         width = 30)
 
     # Outputting all types
