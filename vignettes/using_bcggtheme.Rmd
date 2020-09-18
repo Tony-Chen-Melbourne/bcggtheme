@@ -242,5 +242,5 @@ bcg_save_pptx(filename = "test.pptx", type = "all") # Creates all five types
 
 `bcg_save` works best with `.png` files, currently it is unable to output `.pdf` files. (This shouldn't be a problem. In this line of work, I cannot imagine why you would want to directly output to pdf).
 
-
+I recommend that `bcg_save_pptx()` shouldn't be used with map outputs, because the editable powerpoint graphic can easily blow up in size (a simple map of Australia can easily go to 1mb or more) and become unwieldy.
 
