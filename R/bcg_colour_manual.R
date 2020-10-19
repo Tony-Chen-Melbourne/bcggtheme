@@ -6,7 +6,7 @@
 #' @export
 
 bcg_colour_manual <- function(...,
-                              pal = "base",
+                              pal = "bright",
                               reverse = FALSE) {
 
 palette <- bcggtheme::bcg_palette(pal = pal)

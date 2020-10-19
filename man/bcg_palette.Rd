@@ -4,10 +4,10 @@
 \alias{bcg_palette}
 \title{Output ggplot charts to pdf or png files}
 \usage{
-bcg_palette(pal = "base")
+bcg_palette(pal = "bright")
 }
 \arguments{
-\item{pal}{Type of palette to pick, "base" or "traffic2" or "traffic3" - defaults to base}
+\item{pal}{Type of palette to pick, "ee" or "multi" or "traffic" or "bright" or "dark" - defaults to bright}
 }
 \description{
 Output ggplot charts to pdf or png files

@@ -4,6 +4,43 @@
 #'
 "bcg_green_bright"
 
+#' Hex code for the 1st alternative bright BCG green
+#'
+#' #A1E26F
+#'
+"bcg_green_bright_1"
+
+#' Hex code for the 2nd alternative bright BCG green
+#'
+#' #60DB65
+#'
+"bcg_green_bright_2"
+
+
+#' Hex code for the 3rd alternative bright BCG green
+#'
+#' #63A64E
+#'
+"bcg_green_bright_3"
+
+#' Hex code for the 4th alternative bright BCG green
+#'
+#' #318C46
+#'
+"bcg_green_bright_4"
+
+#' Hex code for the 5th alternative bright BCG green
+#'
+#' #2A6B2A
+#'
+"bcg_green_bright_5"
+
+#' Hex code for the 6th alternative bright BCG green
+#'
+#' #235930
+#'
+"bcg_green_bright_6"
+
 #' Hex code for mint green
 #'
 #' #3EAD92
@@ -34,6 +71,13 @@
 #'
 "bcg_blue_true"
 
+#' Hex code for violet
+#'
+#' #741E92
+#'
+#'
+"bcg_violet"
+
 #' Hex code for cranberry
 #'
 #' #670F31
@@ -45,6 +89,12 @@
 #' #E71C57
 #'
 "bcg_red_magenta"
+
+#' Hex code for orange red
+#'
+#' #E15846
+#'
+"bcg_red_orange"
 
 #' Hex code for dark yellow
 #'

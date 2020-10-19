@@ -4,7 +4,7 @@
 \alias{bcg_fill_manual}
 \title{Easily fill your ggplot data using the BCG palette}
 \usage{
-bcg_fill_manual(..., pal = "base", reverse = FALSE)
+bcg_fill_manual(..., pal = "bright", reverse = FALSE)
 }
 \arguments{
 \item{pal}{Choose the colour palette, either "base" or "traffic2" or "traffic3". Defaults to "base".}

@@ -199,15 +199,20 @@ Note that the same functionality applies to `bcg_theme_classic()`.
 
 ### Colours
 
-The package is loaded with most standard BCG colours. Colours and palettes are tedious to add, so it's a work in progress and some may be missing. The colours are divided across three palettes: traffic2, traffic3, and base (picking colours from left to right)
+The package is loaded with most standard BCG colours. Colours and palettes are tedious to add, so it's a work in progress and some may be missing. The colours are divided across three palettes: `bright`, `dark`, `ee`, `multi`, `traffic` (picking colours from left to right). 
 
-`bcg_colour_manual` and `bcg_fill_manual` can use either palette by specifying `pal = "traffic"` or `pal = "base"`. The colouring order can also be reversed using the `reverse = TRUE`.
+`bcg_colour_manual` and `bcg_fill_manual` can any choice by specifying `pal = "X"`. The default option is `pal = bright`. The colouring order can also be reversed using the `reverse = TRUE`.
 <p>
-![Traffic palette 2](traffic2.png)
+![Bright](bright.png)
 
-![Traffic palette 3](traffic3.png)
+![Dark](dark.png)
 
-![base palette](base.png)
+![Multi](multi.png)
+
+![EE](ee.png)
+
+![Traffic](traffic.png)
+
 <p>
 
 ### Outputting charts from R
